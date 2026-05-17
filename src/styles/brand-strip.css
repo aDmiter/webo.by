@@ -1,0 +1,35 @@
+:root {
+  --webo-brand-width: clamp(4rem, 6.5vw, 5.75rem);
+}
+
+.brand-strip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 45;
+  height: 100vh;
+  width: var(--webo-brand-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.brand-strip__link {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: clamp(0.75rem, 2vh, 1.25rem) 0;
+}
+
+.brand-strip__img {
+  width: calc(100vh - 2.5rem);
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  transform: rotate(-90deg);
+  flex-shrink: 0;
+}

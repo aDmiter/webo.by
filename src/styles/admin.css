@@ -1,0 +1,123 @@
+.admin-root {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+.admin-panel {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 240px 1fr;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.admin-login {
+  min-height: 100vh;
+}
+
+.admin-panel__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem 1.25rem;
+  border-right: 1px solid #e2e8f0;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.admin-panel__brand {
+  display: block;
+  line-height: 0;
+}
+
+.admin-panel__brand-img {
+  width: auto;
+  height: 2rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.admin-panel__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.admin-panel__nav-link {
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.admin-panel__nav-link--active,
+.admin-panel__nav-link:hover {
+  background: color-mix(in srgb, var(--webo-primary, #03ccbd) 12%, transparent);
+  color: #0f172a;
+}
+
+.admin-panel__logout {
+  margin-top: auto;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.admin-panel__main {
+  padding: 2rem;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+.admin-panel__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.admin-panel__card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.admin-panel__form-grid {
+  display: grid;
+  gap: 1rem;
+  max-width: 32rem;
+}
+
+.admin-panel__color-row {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.admin-portfolio__item {
+  cursor: grab;
+  transition: box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.admin-portfolio__item:active {
+  cursor: grabbing;
+}
+
+.admin-portfolio__item--dragging {
+  opacity: 0.65;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--webo-primary) 20%, transparent);
+}
+
+.admin-portfolio__handle {
+  color: #94a3b8;
+  font-size: 1rem;
+  line-height: 1;
+  user-select: none;
+  padding-top: 0.15rem;
+}
