@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && next build && node scripts/beget-postbuild.mjs",
     "start": "next start -p 3001",
     "lint": "eslint",
     "db:generate": "prisma generate",
@@ -12,6 +12,8 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
+    "admin:reset": "tsx scripts/reset-admin.ts",
+    "deploy:beget": "bash scripts/deploy-beget.sh",
     "db:studio": "prisma studio",
     "portfolio:screenshots": "tsx scripts/capture-portfolio-screens.ts"
   },

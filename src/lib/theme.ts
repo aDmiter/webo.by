@@ -11,6 +11,8 @@ export type SiteTheme = {
   contactEmail: string;
   contactPhone: string | null;
   contactAddress: string | null;
+  googleAnalyticsId: string | null;
+  yandexMetrikaId: string | null;
 };
 
 export async function getSiteTheme(): Promise<SiteTheme> {
@@ -27,6 +29,8 @@ export async function getSiteTheme(): Promise<SiteTheme> {
       contactEmail: settings.contactEmail,
       contactPhone: settings.contactPhone,
       contactAddress: settings.contactAddress,
+      googleAnalyticsId: settings.googleAnalyticsId,
+      yandexMetrikaId: settings.yandexMetrikaId,
     };
   } catch {
     return { ...DEFAULT_THEME };

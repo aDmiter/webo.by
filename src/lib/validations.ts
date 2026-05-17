@@ -22,13 +22,25 @@ export const settingsSchema = z.object({
   contactEmail: z.string().email(),
   contactPhone: z.string().optional(),
   contactAddress: z.string().optional(),
+  googleAnalyticsId: z
+    .string()
+    .trim()
+    .optional()
+    .refine((v) => !v || /^G-[A-Z0-9]+$/i.test(v), {
+      message: "ID Google Analytics: формат G-XXXXXXXXXX",
+    }),
+  yandexMetrikaId: z
+    .string()
+    .trim()
+    .optional()
+    .refine((v) => !v || /^\d+$/.test(v), { message: "ID Метрики: только цифры" }),
 });
 
 export const serviceSchema = z.object({
   title: z.string().min(2),
   description: z.string().min(10),
   icon: z.string().optional(),
-  sortOrder: z.coerce.number().int().default(0),
+  sortOrder: z.number().int().default(0),
   published: z.boolean().default(true),
 });
 
@@ -52,7 +64,7 @@ export const portfolioSchema = z.object({
   projectUrl: z.union([z.literal(""), urlOrPath]).optional(),
   tags: z.string().optional(),
   featured: z.boolean(),
-  sortOrder: z.coerce.number().int(),
+  sortOrder: z.number().int(),
   published: z.boolean(),
 });
 

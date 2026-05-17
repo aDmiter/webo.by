@@ -10,11 +10,12 @@ type FormValues = z.infer<typeof contactSchema>;
 
 type Props = {
   variant?: "page" | "modal";
+  compact?: boolean;
   defaultMessage?: string;
   onSuccess?: () => void;
 };
 
-export function ContactForm({ variant = "page", defaultMessage = "", onSuccess }: Props) {
+export function ContactForm({ variant = "page", compact = false, defaultMessage = "", onSuccess }: Props) {
   const formClass = variant === "modal" ? "flipbook__form flipbook__form--modal" : "flipbook__form";
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const {
@@ -69,7 +70,11 @@ export function ContactForm({ variant = "page", defaultMessage = "", onSuccess }
       </div>
       <div className="flipbook__form-row">
         <label htmlFor={`message-${id}`}>Сообщение</label>
-        <textarea id={`message-${id}`} rows={variant === "modal" ? 5 : 4} {...register("message")} />
+        <textarea
+          id={`message-${id}`}
+          rows={variant === "modal" ? 5 : compact ? 3 : 4}
+          {...register("message")}
+        />
         {errors.message && <p className="text-sm text-red-500">{errors.message.message}</p>}
       </div>
       <button type="submit" className="flipbook__cta" disabled={status === "loading"}>

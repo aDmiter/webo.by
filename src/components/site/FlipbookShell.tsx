@@ -36,9 +36,6 @@ export function FlipbookShell({ children }: Props) {
         >
           Связаться
         </button>
-        <Link href="/admin" className="flipbook__admin-link">
-          Admin
-        </Link>
       </header>
 
       <ContactModal

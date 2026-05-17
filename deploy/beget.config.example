@@ -1,0 +1,4 @@
+# Скопируйте в deploy/beget.config и при необходимости измените.
+BEGET_SSH_HOST="admite@admite.beget.tech"
+BEGET_REMOTE_DIR="webo.by/webo-by"
+BEGET_NODE_BIN="webo.by/webo-by/.node/bin"

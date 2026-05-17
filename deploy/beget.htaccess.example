@@ -1,0 +1,6 @@
+PassengerNodejs /home/a/admite/.local/bin/node
+PassengerAppRoot /home/a/admite/webo.by/webo-by
+PassengerAppType node
+PassengerStartupFile server.js
+PassengerAppEnv production
+SetEnv HOSTNAME 127.0.0.1

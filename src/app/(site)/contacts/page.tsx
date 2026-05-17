@@ -6,7 +6,7 @@ export default async function ContactsPage() {
   const theme = await getSiteTheme();
 
   return (
-    <PageSection className="flipbook__page--scroll">
+    <PageSection className="flipbook__page--screen flipbook__page--contacts">
       <ContactsPageContent
         contactEmail={theme.contactEmail}
         contactPhone={theme.contactPhone}

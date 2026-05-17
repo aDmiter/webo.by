@@ -1,0 +1,98 @@
+.blog-detail {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding-top: clamp(3rem, 7vh, 4.5rem);
+  padding-bottom: clamp(2rem, 5vh, 3rem);
+}
+
+.blog-detail__back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--webo-fg) 55%, transparent);
+  transition: color 0.25s ease;
+}
+
+.blog-detail__back:hover {
+  color: var(--webo-primary);
+}
+
+.blog-detail__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.blog-detail__meta {
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--webo-fg) 50%, transparent);
+  margin-bottom: 2rem;
+}
+
+.blog-detail__prose {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: color-mix(in srgb, var(--webo-fg) 82%, transparent);
+}
+
+.blog-detail__prose h2 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--webo-fg);
+}
+
+.blog-detail__prose h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--webo-fg);
+}
+
+.blog-detail__prose h4 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.blog-detail__prose p,
+.blog-detail__prose ul,
+.blog-detail__prose ol {
+  margin: 0 0 1rem;
+}
+
+.blog-detail__prose ul,
+.blog-detail__prose ol {
+  padding-left: 1.35rem;
+}
+
+.blog-detail__prose li {
+  margin-bottom: 0.35rem;
+}
+
+.blog-detail__prose a {
+  color: var(--webo-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-detail__prose strong {
+  color: var(--webo-fg);
+  font-weight: 600;
+}
+
+.flipbook__card--blog {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.flipbook__card--blog:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--webo-primary) 40%, transparent);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--webo-primary) 12%, transparent);
+}

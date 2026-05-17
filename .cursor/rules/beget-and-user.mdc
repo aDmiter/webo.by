@@ -1,0 +1,46 @@
+---
+description: Beget production, deploy workflow, user preferences
+alwaysApply: true
+---
+
+# WEBO.by — Beget и стиль работы с владельцем
+
+## Пользователь
+- Не разработчик: объяснять **коротко, по одному шагу**, без кучи команд сразу.
+- Если просит «запомни» — опираться на этот файл и не повторять длинные инструкции.
+
+## Продакшен (Beget, виртуальный хостинг, не VPS)
+- Домен: **https://webo.by**
+- Проект на сервере: `~/webo.by/webo-by/`
+- Node: `~/webo.by/webo-by/.node/bin/` (не `.local` — Passenger не видел)
+- Passenger: `~/webo.by/.htaccess`, перезапуск: `touch ~/webo.by/webo-by/tmp/restart.txt`
+- MySQL на Beget: БД `admite_weboreact`, хост `localhost` (пароль только в `.env` на сервере, не в репозитории)
+- `.env` **только на сервере**, в деплой не заливать
+- **Никогда на бою:** `npm run db:seed` (затирает контент/пароль), кроме явной просьбы сбросить админа
+- Админка: `/admin/login` — логин/пароль из `ADMIN_EMAIL` / `ADMIN_PASSWORD` в серверном `.env`
+- Заявки с формы — только в админке, SMTP не нужен
+- Терминал Beget в браузере (cp.beget.com) работает; SSH из PowerShell у пользователя часто обрывался — для ручных команд на сервере предпочитать **веб-терминал панели**
+
+## Локально
+- `npm run dev` → http://localhost:3001
+- Своя MySQL (Docker из README)
+
+## Деплой правок (когда пользователь готов)
+**Формат инструкции — только так (пользователь так просил):**
+1. **Залей** — явный список файлов и папок (пути от корня проекта), куда на сервере: `~/webo.by/webo-by/`
+2. **В терминале Beget** — готовый блок команд (веб-терминал cp.beget.com), без альтернативных способов, пока сам не попросит
+
+Не заливать: `node_modules`, `.next`, `.env`, `.git`, `.cursor`
+
+Типовой блок терминала (добавлять `npx prisma db push` только если менялся `prisma/schema.prisma`):
+```bash
+export PATH=~/webo.by/webo-by/.node/bin:$PATH
+cd ~/webo.by/webo-by
+npm run build
+touch tmp/restart.txt
+```
+
+`npm run deploy:beget` / Git / VS Code — не предлагать, пока пользователь сам не попросит.
+
+## Уже сделано на проде
+- Сайт открывается, админка работает, ссылку Admin в шапке убрали (`FlipbookShell.tsx`)

@@ -23,7 +23,6 @@ export function PortfolioCarousel({ items, variant = "full", limit }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef(0);
   const dragRef = useRef<DragState>({ active: false, moved: false, startX: 0, scrollLeft: 0 });
-  const blockClickRef = useRef(false);
   const [active, setActive] = useState(0);
   const [dragging, setDragging] = useState(false);
 
@@ -107,6 +106,8 @@ export function PortfolioCarousel({ items, variant = "full", limit }: Props) {
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.button !== 0) return;
+    if ((e.target as HTMLElement).closest("a")) return;
+
     const track = trackRef.current;
     if (!track) return;
 
@@ -117,7 +118,6 @@ export function PortfolioCarousel({ items, variant = "full", limit }: Props) {
       scrollLeft: track.scrollLeft,
     };
     setDragging(true);
-    track.setPointerCapture(e.pointerId);
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -126,15 +126,17 @@ export function PortfolioCarousel({ items, variant = "full", limit }: Props) {
     if (!track) return;
 
     const dx = e.clientX - dragRef.current.startX;
-    if (Math.abs(dx) > 5) {
+    if (Math.abs(dx) > 12) {
       dragRef.current.moved = true;
-      e.preventDefault();
     }
 
-    track.scrollLeft = dragRef.current.scrollLeft - dx;
+    if (dragRef.current.moved) {
+      e.preventDefault();
+      track.scrollLeft = dragRef.current.scrollLeft - dx;
+    }
   };
 
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerUp = () => {
     if (!dragRef.current.active) return;
 
     const wasDrag = dragRef.current.moved;
@@ -142,21 +144,8 @@ export function PortfolioCarousel({ items, variant = "full", limit }: Props) {
     dragRef.current.moved = false;
     setDragging(false);
 
-    trackRef.current?.releasePointerCapture(e.pointerId);
-
     if (wasDrag) {
-      blockClickRef.current = true;
       readActiveFromScroll();
-      window.setTimeout(() => {
-        blockClickRef.current = false;
-      }, 80);
-    }
-  };
-
-  const handleClickCapture = (e: React.MouseEvent) => {
-    if (blockClickRef.current || dragRef.current.moved) {
-      e.preventDefault();
-      e.stopPropagation();
     }
   };
 
@@ -198,8 +187,8 @@ export function PortfolioCarousel({ items, variant = "full", limit }: Props) {
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
         onPointerCancel={handlePointerUp}
-        onClickCapture={handleClickCapture}
       >
         {visibleItems.map((item) => (
           <article
@@ -208,13 +197,9 @@ export function PortfolioCarousel({ items, variant = "full", limit }: Props) {
           >
             <PortfolioCardLink
               href={`/portfolio/${item.slug}`}
-              slug={item.slug}
               className="portfolio-carousel__card"
             >
-              <div
-                className="portfolio-carousel__media"
-                style={{ viewTransitionName: `portfolio-${item.slug}` } as React.CSSProperties}
-              >
+              <div className="portfolio-carousel__media">
                 {item.imageUrl ? (
                   <Image
                     src={item.imageUrl}

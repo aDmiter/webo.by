@@ -221,6 +221,9 @@
   background: color-mix(in srgb, var(--webo-bg) 94%, transparent);
   backdrop-filter: blur(8px);
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .portfolio-carousel__card:hover {
@@ -297,17 +300,6 @@
 
 .portfolio-carousel__more {
   margin-top: 1.25rem;
-}
-
-.contacts-page__info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.contacts-page__quick {
-  margin-top: 0.75rem;
-  align-self: flex-start;
 }
 
 .portfolio-carousel__external {

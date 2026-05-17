@@ -18,6 +18,8 @@ model SiteSettings {
   contactEmail   String   @default("hello@webo.by") @map("contact_email")
   contactPhone   String?  @map("contact_phone")
   contactAddress String?  @map("contact_address")
+  googleAnalyticsId String? @map("google_analytics_id")
+  yandexMetrikaId   String? @map("yandex_metrika_id")
   updatedAt      DateTime @updatedAt @map("updated_at")
 
   @@map("site_settings")

@@ -1,3 +1,4 @@
+import { AnalyticsScripts } from "@/components/site/AnalyticsScripts";
 import { BrandLogo } from "@/components/site/BrandLogo";
 import { FlipbookShell } from "@/components/site/FlipbookShell";
 import { pageBackgroundUrl } from "@/lib/assets.server";
@@ -17,6 +18,10 @@ export default async function SiteLayout({
 
   return (
     <div className="site-root" style={siteStyle}>
+      <AnalyticsScripts
+        googleAnalyticsId={theme.googleAnalyticsId}
+        yandexMetrikaId={theme.yandexMetrikaId}
+      />
       <BrandLogo />
       <FlipbookShell>{children}</FlipbookShell>
     </div>

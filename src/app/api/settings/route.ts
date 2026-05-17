@@ -20,10 +20,16 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
+  const data = {
+    ...parsed.data,
+    googleAnalyticsId: parsed.data.googleAnalyticsId?.trim() || null,
+    yandexMetrikaId: parsed.data.yandexMetrikaId?.trim() || null,
+  };
+
   const settings = await prisma.siteSettings.upsert({
     where: { id: 1 },
-    create: { id: 1, ...parsed.data },
-    update: parsed.data,
+    create: { id: 1, ...data },
+    update: data,
   });
 
   return NextResponse.json(settings);

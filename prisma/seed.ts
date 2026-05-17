@@ -1,6 +1,7 @@
 import "dotenv/config";
 import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
+import { BLOG_POSTS } from "../src/data/blog-posts";
 import { PORTFOLIO_PROJECTS } from "../src/data/portfolio-projects";
 import { SITE_SERVICES } from "../src/data/site-services";
 
@@ -17,11 +18,14 @@ async function main() {
       colorPrimary: "#03ccbd",
       colorAccent: "#ff6b4a",
       colorForeground: "#0f172a",
-      contactEmail: "hello@webo.by",
-      contactPhone: "+375 (00) 000-00-00",
+      contactEmail: "info@webo.by",
+      contactPhone: "+375 (29) 728-10-82",
       contactAddress: "Минск, Беларусь",
     },
-    update: {},
+    update: {
+      contactEmail: "info@webo.by",
+      contactPhone: "+375 (29) 728-10-82",
+    },
   });
 
   const email = process.env.ADMIN_EMAIL ?? "admin@webo.by";
@@ -77,8 +81,30 @@ async function main() {
     });
   }
 
+  for (const post of BLOG_POSTS) {
+    await prisma.blogPost.upsert({
+      where: { slug: post.slug },
+      create: {
+        slug: post.slug,
+        title: post.title,
+        excerpt: post.excerpt,
+        content: post.content,
+        published: true,
+        publishedAt: new Date(post.publishedAt),
+      },
+      update: {
+        title: post.title,
+        excerpt: post.excerpt,
+        content: post.content,
+        published: true,
+        publishedAt: new Date(post.publishedAt),
+      },
+    });
+  }
+
   console.log("Seed complete. Admin:", email);
   console.log("Portfolio projects:", PORTFOLIO_PROJECTS.length);
+  console.log("Blog posts:", BLOG_POSTS.length);
 }
 
 main()

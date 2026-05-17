@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { createSessionToken } from "@/lib/auth";
 import { AUTH_COOKIE } from "@/lib/constants";
+import { isSecureCookie } from "@/lib/cookie";
 import { prisma } from "@/lib/prisma";
 import { loginSchema } from "@/lib/validations";
 
@@ -33,7 +34,7 @@ export async function POST(request: Request) {
 
     response.cookies.set(AUTH_COOKIE, token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: isSecureCookie(request),
       sameSite: "lax",
       path: "/",
       maxAge: 60 * 60 * 24 * 7,

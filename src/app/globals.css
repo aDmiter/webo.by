@@ -121,15 +121,13 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@view-transition {
-  navigation: auto;
-}
-
 @import "../styles/brand-strip.css";
 @import "../styles/parallax.css";
 @import "../styles/portfolio-carousel.css";
 @import "../styles/flipbook.css";
 @import "../styles/flipbook-screen.css";
+@import "../styles/contacts-page.css";
+@import "../styles/blog.css";
 @import "../styles/admin.css";
 
 @layer base {

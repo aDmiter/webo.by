@@ -100,6 +100,29 @@
   align-items: center;
 }
 
+.admin-panel__fieldset {
+  margin: 0;
+  padding: 1rem 0 0;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-panel__fieldset-legend {
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.admin-panel__fieldset-hint {
+  margin: -0.25rem 0 0;
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
 .admin-portfolio__item {
   cursor: grab;
   transition: box-shadow 0.2s ease, opacity 0.2s ease;

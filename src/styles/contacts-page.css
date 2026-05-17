@@ -1,0 +1,139 @@
+/* Страница контактов — один экран */
+
+.flipbook-screen--contacts .contacts-page__layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  gap: clamp(0.85rem, 2vw, 1.35rem);
+  align-items: stretch;
+}
+
+.contacts-page__card {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65rem, 1.2vh, 0.85rem);
+  padding: clamp(1rem, 2.2vh, 1.35rem);
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--webo-fg) 9%, transparent);
+  background: color-mix(in srgb, var(--webo-bg) 94%, transparent);
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--webo-fg) 5%, transparent);
+  min-height: 0;
+}
+
+.contacts-page__label {
+  margin: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--webo-fg) 48%, transparent);
+}
+
+.contacts-page__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.55rem 0.15rem;
+  text-decoration: none;
+  color: var(--webo-fg);
+  transition: color 0.2s ease;
+}
+
+.contacts-page__link:hover {
+  color: var(--webo-primary);
+}
+
+.contacts-page__link--email {
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.contacts-page__link--telegram {
+  padding: 0.65rem 0.85rem;
+  margin: 0 -0.35rem;
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--webo-primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--webo-primary) 28%, transparent);
+}
+
+.contacts-page__link--telegram:hover {
+  background: color-mix(in srgb, var(--webo-primary) 16%, transparent);
+  border-color: color-mix(in srgb, var(--webo-primary) 45%, transparent);
+}
+
+.contacts-page__phone {
+  font-size: clamp(1rem, 1.9vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.contacts-page__telegram-hint {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--webo-primary);
+}
+
+.contacts-page__address {
+  margin: 0.15rem 0 0;
+  padding-top: 0.35rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--webo-fg) 62%, transparent);
+}
+
+.flipbook-screen--contacts .flipbook__form {
+  margin-top: 0;
+  max-width: none;
+  gap: clamp(0.65rem, 1.2vh, 0.85rem);
+  flex: 1;
+  min-height: 0;
+}
+
+.flipbook-screen--contacts .flipbook__form-row input,
+.flipbook-screen--contacts .flipbook__form-row textarea {
+  padding: 0.75rem 0.9rem;
+}
+
+.flipbook-screen--contacts .flipbook__form-row textarea {
+  min-height: 4.5rem;
+  max-height: 5.5rem;
+  resize: vertical;
+}
+
+.flipbook-screen--contacts .flipbook__cta {
+  margin-top: 0.25rem;
+  align-self: flex-start;
+}
+
+@media (max-width: 800px) {
+  .flipbook-screen--contacts .contacts-page__layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .contacts-page__channels {
+    flex-shrink: 0;
+  }
+
+  .contacts-page__form-card {
+    min-height: 0;
+    overflow-y: auto;
+  }
+}
+
+@media (max-height: 720px) {
+  .flipbook-screen--contacts .contacts-page__layout {
+    gap: 0.65rem;
+  }
+
+  .contacts-page__card {
+    padding: 0.85rem;
+  }
+
+  .flipbook-screen--contacts .flipbook__form-row textarea {
+    min-height: 3.5rem;
+    max-height: 4.25rem;
+  }
+}

@@ -35,11 +35,18 @@ export function SettingsForm() {
       colorAccent: "#ff6b4a",
       colorForeground: "#0f172a",
       contactEmail: "hello@webo.by",
+      googleAnalyticsId: "",
+      yandexMetrikaId: "",
     },
   });
 
   useEffect(() => {
-    if (data) form.reset(data);
+    if (!data) return;
+    form.reset({
+      ...data,
+      googleAnalyticsId: data.googleAnalyticsId ?? "",
+      yandexMetrikaId: data.yandexMetrikaId ?? "",
+    });
   }, [data, form]);
 
   const onSubmit = form.handleSubmit(async (values) => {
@@ -87,6 +94,42 @@ export function SettingsForm() {
         <Label htmlFor="contactAddress">Адрес</Label>
         <Input id="contactAddress" {...form.register("contactAddress")} />
       </div>
+
+      <fieldset className="admin-panel__fieldset">
+        <legend className="admin-panel__fieldset-legend">Аналитика</legend>
+        <p className="admin-panel__fieldset-hint">
+          ID из кабинетов Google Analytics 4 и Яндекс Метрики. Оставьте пустым, чтобы отключить
+          счётчик.
+        </p>
+        <div>
+          <Label htmlFor="googleAnalyticsId">Google Analytics (ID потока)</Label>
+          <Input
+            id="googleAnalyticsId"
+            placeholder="G-XXXXXXXXXX"
+            autoComplete="off"
+            {...form.register("googleAnalyticsId")}
+          />
+          {form.formState.errors.googleAnalyticsId && (
+            <p className="mt-1 text-sm text-red-500">
+              {form.formState.errors.googleAnalyticsId.message}
+            </p>
+          )}
+        </div>
+        <div>
+          <Label htmlFor="yandexMetrikaId">Яндекс Метрика (номер счётчика)</Label>
+          <Input
+            id="yandexMetrikaId"
+            placeholder="12345678"
+            inputMode="numeric"
+            autoComplete="off"
+            {...form.register("yandexMetrikaId")}
+          />
+          {form.formState.errors.yandexMetrikaId && (
+            <p className="mt-1 text-sm text-red-500">{form.formState.errors.yandexMetrikaId.message}</p>
+          )}
+        </div>
+      </fieldset>
+
       <Button type="submit">Сохранить</Button>
     </form>
   );

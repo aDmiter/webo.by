@@ -1,6 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE } from "@/lib/constants";
+import { isSecureCookie } from "@/lib/cookie";
 
 const secret = () => new TextEncoder().encode(process.env.JWT_SECRET ?? "dev-secret");
 
@@ -39,7 +40,7 @@ export async function setSessionCookie(token: string) {
   const store = await cookies();
   store.set(AUTH_COOKIE, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: isSecureCookie(),
     sameSite: "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 7,

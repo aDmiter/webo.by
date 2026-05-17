@@ -5,9 +5,11 @@ export const DEFAULT_THEME = {
   colorPrimary: "#03ccbd",
   colorAccent: "#ff6b4a",
   colorForeground: "#0f172a",
-  contactEmail: "hello@webo.by",
-  contactPhone: null as string | null,
+  contactEmail: "info@webo.by",
+  contactPhone: "+375 (29) 728-10-82",
   contactAddress: null as string | null,
+  googleAnalyticsId: null as string | null,
+  yandexMetrikaId: null as string | null,
 } as const;
 
 export const NAV_ITEMS = [
